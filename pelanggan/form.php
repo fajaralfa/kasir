@@ -10,7 +10,7 @@
             <textarea name="alamat" id="" cols="30" rows="3" class="form-control"><?= $form['alamat'] ?? '' ?></textarea>
         </div>
         <div>
-            <label for="nomor_telepon">Nomor Telepon<label>
+            <label for="nomor_telepon">Nomor Telepon</label>
             <input type="number" name="nomor_telepon" value="<?= $form['nomor_telepon'] ?? '' ?>" id="" placeholder="08xxxxx" class="form-control">
         </div>
         <div>
