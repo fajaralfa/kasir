@@ -31,4 +31,4 @@ $db->commit();
 
 keranjang_destroy();
 flash_messages(['Transaksi Selesai!']);
-redirect('/penjualan/');
+redirect(uri("/penjualan/detail?id=$penjualan_id"));
