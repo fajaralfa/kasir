@@ -4,7 +4,7 @@ require '../start.php';
 require '../system/keranjang.php';
 
 // Buat data penjualan
-$tanggal_penjualan = date('Y-m-d');
+$tanggal_penjualan = $_POST['tanggal_penjualan'];
 $total_harga = $_POST['total'];
 $pelanggan_id = $_POST['pelanggan_id'];
 
