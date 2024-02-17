@@ -41,3 +41,14 @@ CREATE TABLE detail_penjualan (
     FOREIGN KEY (penjualan_id) REFERENCES penjualan(id),
     FOREIGN KEY (produk_id) REFERENCES produk(id)
 );
+
+-- Stok akan berkurang secara otomatis sesuai dengan jumlah_produk yang diisi
+-- di subtotal tabel detail_penjualan
+DELIMITER $$
+CREATE TRIGGER after_insert_detail_penjualan
+AFTER INSERT ON detail_penjualan FOR EACH ROW
+BEGIN
+    UPDATE produk SET stok = stok - NEW.jumlah_produk
+    WHERE id = NEW.produk_id;
+END$$
+DELIMITER ;
