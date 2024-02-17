@@ -10,5 +10,6 @@ if (request_is('POST')) {
     $jumlah = (int) $_POST['jumlah'];
 
     keranjang_insert($produk_id, $nama, $harga, $jumlah);
+    flash_messages(['Produk berhasil ditambahkan ke keranjang!']);
     redirect('index.php');
 }
