@@ -2,7 +2,7 @@
     <a href="<?= uri('/dashboard.php') ?>" class="btn btn-primary">Dashboard</a>
     <a href="<?= uri('/penjualan/') ?>" class="btn btn-primary">Penjualan</a>
     <a href="<?= uri('/produk/') ?>" class="btn btn-primary">Produk</a>
-    <a href="<?= uri('/keranjang/') ?>" class="btn btn-primary">Keranjang</a>
+    <a href="<?= uri('/keranjang/') ?>" class="btn btn-primary">Keranjang (<?= count(session_get('keranjang')) ?>)</a>
     <a href="<?= uri('/pelanggan/') ?>" class="btn btn-primary">Pelanggan</a>
     <?php if ($user['level'] == 'admin') : ?>
         <a href="<?= uri('/petugas/') ?>" class="btn btn-primary">Petugas</a>
