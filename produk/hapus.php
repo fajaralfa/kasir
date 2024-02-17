@@ -4,12 +4,14 @@ require '../start.php';
 
 $id = $_GET['id'];
 $sql = "DELETE FROM produk WHERE id = $id";
-$success = $db->query($sql);
 
-if ($success) {
-    flash_messages(['Data telah dihapus!']);
-    redirect('index.php');
-} else {
-    flash_errors(['Data gagal dihapus!']);
-    redirect('index.php');
+try {
+    $db->query($sql);
+    flash_messages(['Data produk telah dihapus!']);
+} catch (mysqli_sql_exception $e) {
+    flash_errors([
+        'Tidak dapat menghapus produk, produk sudah pernah dibeli!',
+    ]);
 }
+
+redirect('index.php');
