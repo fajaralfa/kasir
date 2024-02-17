@@ -84,3 +84,13 @@ function option_selected($value1, $value2)
 {
     return $value1 === $value2 ? 'selected' : '';
 }
+
+/**
+ * 
+ */
+
+function bs_active($uri)
+{
+    $req_uri = $_SERVER['REQUEST_URI'];
+    return str_starts_with($req_uri, uri($uri)) ? 'active' : '';
+}
