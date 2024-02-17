@@ -55,13 +55,12 @@ require '../layout/header.php';
             <?php endforeach ?>
         </tbody>
     </table>
-    <div>
-        <form action="transaksi.php" method="post">
-            <input type="hidden" name="pelanggan_id" value="<?= $pelanggan_id ?>">
-            <input type="hidden" name="total" value="<?= $total ?>" id="">
-            <button class="btn btn-primary">Buat Transaksi</button>
-        </form>
-    </div>
+    <form action="transaksi.php" method="post" class="d-flex gap-3">
+        <input type="hidden" name="pelanggan_id" value="<?= $pelanggan_id ?>">
+        <input type="hidden" name="total" value="<?= $total ?>" id="">
+        <input type="date" name="tanggal_penjualan" id="" value="<?= date('Y-m-d') ?>" class="form-control" style="max-width: 10rem;">
+        <button class="btn btn-primary">Buat Transaksi</button>
+    </form>
 </div>
 
 <?php require '../layout/footer.php' ?>
