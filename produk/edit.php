@@ -21,7 +21,7 @@ if(request_is('POST')) {
     }
 }
 
-$sql = "SELECT * FROM produk WHERE id = $$id";
+$sql = "SELECT * FROM produk WHERE id = $id";
 $form = $db->query($sql)->fetch_assoc();
 
 ?>
