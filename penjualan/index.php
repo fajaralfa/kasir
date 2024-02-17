@@ -16,7 +16,7 @@ require '../layout/header.php';
 
 <div class="container border py-3">
     <div class="d-flex align-items-center gap-3 mb-3">
-        <a href="tambah.php">Buat Penjualan</a>
+        <a href="<?= uri('/produk/') ?>">Buat Penjualan</a>
         <form action="" method="get" class="d-flex gap-3">
             <input type="text" name="nama" id="" class="form-control">
             <button type="submit" class="btn btn-success">Cari</button>
