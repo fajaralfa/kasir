@@ -2,17 +2,17 @@
 
 function keranjang_has($id)
 {
-    return array_key_exists($id, $_SESSION['produk'] ?? []);
+    return array_key_exists($id, $_SESSION['keranjang'] ?? []);
 }
 
 function keranjang_insert($id, $nama, $harga, $jumlah)
 {
     if (keranjang_has($id)) {
-        $_SESSION['produk'][$id]['jumlah'] += $jumlah;
+        $_SESSION['keranjang'][$id]['jumlah'] += $jumlah;
         return;
     }
 
-    $_SESSION['produk'][$id] = [
+    $_SESSION['keranjang'][$id] = [
         'nama' => $nama,
         'harga' => $harga,
         'jumlah' => $jumlah,
@@ -21,15 +21,15 @@ function keranjang_insert($id, $nama, $harga, $jumlah)
 
 function keranjang_all()
 {
-    return $_SESSION['produk'] ?? [];
+    return $_SESSION['keranjang'] ?? [];
 }
 
 function keranjang_remove($index)
 {
-    unset($_SESSION['produk'][$index]);
+    unset($_SESSION['keranjang'][$index]);
 }
 
 function keranjang_destroy()
 {
-    unset($_SESSION['produk']);
+    unset($_SESSION['keranjang']);
 }
