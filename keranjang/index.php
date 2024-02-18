@@ -48,7 +48,7 @@ require '../layout/header.php';
         </tbody>
     </table>
     <div>
-        <a href="pilih_pelanggan.php" class="btn btn-primary">Buat Transaksi</a>
+        <a href="pilih_pelanggan.php" class="btn btn-primary">Buat Penjualan</a>
     </div>
 </div>
 

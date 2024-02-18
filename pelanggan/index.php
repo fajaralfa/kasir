@@ -40,7 +40,7 @@ require '../layout/header.php';
                     <td><?= $pelanggan['alamat'] ?></td>
                     <td><?= $pelanggan['nomor_telepon'] ?></td>
                     <td>
-                        <a href="../keranjang/konfirmasi.php?id=<?= $pelanggan['id'] ?>" class="btn btn-primary">Buat Transaksi</a>
+                        <a href="<?= uri("/penjualan/konfirmasi.php?id=$pelanggan[id]") ?>" class="btn btn-primary">Buat Penjualan</a>
                         <a href="edit.php?id=<?= $pelanggan['id'] ?>" class="btn btn-secondary">Edit</a>
                         <a href="hapus.php?id=<?= $pelanggan['id'] ?>" class="btn btn-danger" onclick="return confirm('Hapus pelanggan ini?')">Hapus</a>
                     </td>

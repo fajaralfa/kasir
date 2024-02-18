@@ -30,5 +30,5 @@ foreach ($data_keranjang as $produk_id => $produk) {
 $db->commit();
 
 keranjang_destroy();
-flash_messages(['Transaksi Selesai!']);
-redirect(uri("/penjualan/detail.php?id=$penjualan_id"));
+flash_messages(['Penjualan Selesai!']);
+redirect("detail.php?id=$penjualan_id");
