@@ -25,10 +25,15 @@ require '../layout/header.php';
 ?>
 
 <div class="container border py-3">
-    <div class="d-grid" style="grid-template-columns: auto auto; max-width: 30rem;">
-        <div>Nama Pelanggan</div><div>: <?= $penjualan['nama'] ?></div>
-        <div>Alamat</div><div>: <?= $penjualan['alamat'] ?></div>
-        <div>Nomor Telepon</div><div>: <?= $penjualan['nomor_telepon'] ?></div>
+    <div class="d-grid" style="grid-template-columns: 10rem auto;">
+        <div>Tanggal Penjualan</div>
+        <div>: <?= $penjualan['tanggal_penjualan'] ?></div>
+        <div>Nama Pelanggan</div>
+        <div>: <?= $penjualan['nama'] ?></div>
+        <div>Alamat</div>
+        <div>: <?= $penjualan['alamat'] ?></div>
+        <div>Nomor Telepon</div>
+        <div>: <?= $penjualan['nomor_telepon'] ?></div>
     </div>
     <table class="table table-striped">
         <thead>
