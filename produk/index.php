@@ -37,7 +37,7 @@ require '../layout/header.php';
                 <tr>
                     <td><?= $no++ ?></td>
                     <td><?= $produk['nama'] ?></td>
-                    <td><?= $produk['harga'] ?></td>
+                    <td><?= rp($produk['harga']) ?></td>
                     <td><?= $produk['stok'] ?></td>
                     <td class="d-flex gap-3">
                         <form action="ke_keranjang.php" method="post" class="d-flex gap-3">

@@ -30,14 +30,14 @@ require '../layout/header.php';
             </tr>
         </thead>
         <tbody>
-            <?php $no = 1;
-            foreach ($data_penjualan as $penjualan) : ?>
+            <?php $no = 1 ?>
+            <?php foreach ($data_penjualan as $penjualan) : ?>
                 <tr>
                     <td><?= $no++ ?></td>
                     <td><?= $penjualan['tanggal_penjualan'] ?></td>
                     <td><?= $penjualan['nama'] ?></td>
                     <td><?= $penjualan['nomor_telepon'] ?></td>
-                    <td><?= $penjualan['total_harga'] ?></td>
+                    <td><?= rp($penjualan['total_harga']) ?></td>
                     <td class="d-flex gap-3">
                         <a href="detail.php?id=<?= $penjualan['id'] ?>">Detail</a>
                     </td>

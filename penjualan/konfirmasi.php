@@ -39,21 +39,27 @@ require '../layout/header.php';
             $total = 0;
             foreach ($data_keranjang as $key => $val) : ?>
             <?php
-            $subtotal = (int) $val['harga'] * (int) $val['jumlah'];
+            $subtotal = $val['harga'] * $val['jumlah'];
             $total += $subtotal;
             ?>
                 <tr>
                     <td><?= $no++ ?></td>
                     <td><?= $val['nama'] ?></td>
-                    <td><?= $val['harga'] ?></td>
+                    <td><?= rp($val['harga']) ?></td>
                     <td><?= $val['jumlah'] ?></td>
-                    <td><?= $val['harga'] * $val['jumlah'] ?></td>
+                    <td><?= rp($subtotal) ?></td>
                     <td>
                         <a href="hapus.php?id=<?= $key ?>" class="btn btn-danger" onclick="return confirm('Hapus produk dari keranjang?')">Hapus</a>
                     </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4">Total Harga</th>
+                <th><?= rp($total) ?></th>
+            </tr>
+        </tfoot>
     </table>
     <form action="proses.php" method="post" class="d-flex gap-3">
         <input type="hidden" name="pelanggan_id" value="<?= $pelanggan_id ?>">

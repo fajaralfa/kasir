@@ -45,15 +45,23 @@ require '../layout/header.php';
             </tr>
         </thead>
         <tbody>
+            <?php $total = 0 ?>
             <?php foreach ($detail_penjualan as $produk) : ?>
+            <?php $total += $produk['subtotal'] ?>
                 <tr>
                     <td><?= $produk['nama'] ?></td>
-                    <td><?= $produk['harga'] ?></td>
+                    <td><?= rp($produk['harga']) ?></td>
                     <td><?= $produk['jumlah_produk'] ?></td>
-                    <td><?= $produk['subtotal'] ?></td>
+                    <td><?= rp($produk['subtotal']) ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3">Total Harga</th>
+                <th><?= rp($total) ?></th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 

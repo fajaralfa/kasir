@@ -15,10 +15,6 @@ require '../layout/header.php';
 <div class="container border py-3">
     <div class="d-flex align-items-center gap-3 mb-3">
         <a href="<?= uri('/produk/index.php') ?>">Pilih Produk</a>
-        <form action="" method="get" class="d-flex gap-3">
-            <input type="text" name="nama" id="" class="form-control">
-            <button type="submit" class="btn btn-success">Cari</button>
-        </form>
     </div>
     <table class="table table-striped">
         <thead>
@@ -32,20 +28,33 @@ require '../layout/header.php';
             </tr>
         </thead>
         <tbody>
-            <?php $no = 1;
-            foreach ($data_keranjang as $key => $val) : ?>
+            <?php
+            $no = 1;
+            $total = 0;
+            ?>
+            <?php foreach ($data_keranjang as $key => $val) : ?>
+            <?php
+            $subtotal = $val['harga'] * $val['jumlah'];
+            $total += $subtotal;
+            ?>
                 <tr>
                     <td><?= $no++ ?></td>
                     <td><?= $val['nama'] ?></td>
-                    <td><?= $val['harga'] ?></td>
+                    <td><?= rp($val['harga']) ?></td>
                     <td><?= $val['jumlah'] ?></td>
-                    <td><?= $val['harga'] * $val['jumlah'] ?></td>
+                    <td><?= rp($subtotal) ?></td>
                     <td>
                         <a href="hapus.php?id=<?= $key ?>" class="btn btn-danger" onclick="return confirm('Hapus produk dari keranjang?')">Hapus</a>
                     </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4">Total Harga</th>
+                <th><?= rp($total) ?></th>
+            </tr>
+        </tfoot>
     </table>
     <div>
         <a href="pilih_pelanggan.php" class="btn btn-primary">Buat Penjualan</a>

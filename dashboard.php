@@ -30,7 +30,7 @@ require 'layout/header.php';
                 <h3>Pendapatan Bulan Ini</h3>
             </div>
             <div class="card-body">
-                <h1><?= $penjualan['pendapatan_bulan_ini'] ?></h1>
+                <h1><?= rp($penjualan['pendapatan_bulan_ini'] ?? 0) ?></h1>
             </div>
         </div>
     </div>
