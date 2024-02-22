@@ -21,6 +21,7 @@ if (request_is('POST')) {
 ?>
 
 <?php
+$title = 'Login';
 require 'layout/head.php';
 require 'layout/flash.php';
 ?>
