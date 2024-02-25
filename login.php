@@ -10,7 +10,7 @@ if (request_is('POST')) {
 
     if (is_null($user)) {
         flash_errors(['Username atau password salah']);
-        redirect('');
+        redirect('login.php');
     } else {
         unset($user['password']);
         session_set('user', $user);
