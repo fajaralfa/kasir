@@ -1,3 +1,4 @@
 <?php
 
-$db = mysqli_connect('localhost', 'root', '', 'kasir_fajar_xiirpl2');
+// ganti 'kasir_test' jadi nama database kalian
+$db = mysqli_connect('localhost', 'root', '', 'ukk_ngaran_kelas');

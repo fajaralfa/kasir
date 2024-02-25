@@ -57,7 +57,7 @@ require '../layout/header.php';
         </tfoot>
     </table>
     <div>
-        <a href="pilih_pelanggan.php" class="btn btn-primary">Buat Penjualan</a>
+        <a href="<?= uri('/penjualan/konfirmasi.php') ?>" class="btn btn-primary">Buat Penjualan</a>
     </div>
 </div>
 

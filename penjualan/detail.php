@@ -5,9 +5,7 @@ require '../start.php';
 $id = $_GET['id'];
 
 // metadata penjualan
-$sql = "SELECT penjualan.tanggal_penjualan, pelanggan.nama, pelanggan.alamat, pelanggan.nomor_telepon,
-    penjualan.total_harga FROM penjualan
-    LEFT JOIN pelanggan ON penjualan.pelanggan_id = pelanggan.id WHERE penjualan.id = $id";
+$sql = "SELECT * FROM penjualan WHERE id = $id";
 $penjualan = $db->query($sql)->fetch_assoc();
 
 // produk yang dibeli
@@ -24,17 +22,9 @@ $title = 'Detail Penjualan';
 require '../layout/header.php';
 ?>
 
-<div class="container border py-3">
-    <div class="d-grid" style="grid-template-columns: 10rem auto;">
-        <div>Tanggal Penjualan</div>
-        <div>: <?= $penjualan['tanggal_penjualan'] ?></div>
-        <div>Nama Pelanggan</div>
-        <div>: <?= $penjualan['nama'] ?></div>
-        <div>Alamat</div>
-        <div>: <?= $penjualan['alamat'] ?></div>
-        <div>Nomor Telepon</div>
-        <div>: <?= $penjualan['nomor_telepon'] ?></div>
-    </div>
+<div class="container border py-3"> 
+    <button class="btn btn-primary mb-3" onclick="window.print()">Cetak</button>
+    <div>Tanggal Penjualan : <?= $penjualan['tanggal_penjualan'] ?></div>
     <table class="table table-striped">
         <thead>
             <tr>

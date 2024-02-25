@@ -5,10 +5,6 @@ require '../start.php';
 require '../system/keranjang.php';
 $data_keranjang = keranjang_all();
 
-$pelanggan_id = $_GET['id'];
-$sql = "SELECT * FROM pelanggan WHERE id = $pelanggan_id";
-$pelanggan = $db->query($sql)->fetch_assoc();
-
 ?>
 
 <?php
@@ -17,11 +13,6 @@ require '../layout/header.php';
 ?>
 
 <div class="container border py-3">
-    <div class="d-grid" style="grid-template-columns: auto auto; max-width: 30rem;">
-        <div>Nama Pelanggan</div><div>: <?= $pelanggan['nama'] ?></div>
-        <div>Alamat</div><div>: <?= $pelanggan['alamat'] ?></div>
-        <div>Nomor Telepon</div><div>: <?= $pelanggan['nomor_telepon'] ?></div>
-    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -30,7 +21,6 @@ require '../layout/header.php';
                 <th>Harga</th>
                 <th>Jumlah</th>
                 <th>Subtotal</th>
-                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -48,9 +38,6 @@ require '../layout/header.php';
                     <td><?= rp($val['harga']) ?></td>
                     <td><?= $val['jumlah'] ?></td>
                     <td><?= rp($subtotal) ?></td>
-                    <td>
-                        <a href="hapus.php?id=<?= $key ?>" class="btn btn-danger" onclick="return confirm('Hapus produk dari keranjang?')">Hapus</a>
-                    </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
@@ -62,7 +49,6 @@ require '../layout/header.php';
         </tfoot>
     </table>
     <form action="proses.php" method="post" class="d-flex gap-3">
-        <input type="hidden" name="pelanggan_id" value="<?= $pelanggan_id ?>">
         <input type="hidden" name="total" value="<?= $total ?>" id="">
         <input type="date" name="tanggal_penjualan" id="" value="<?= date('Y-m-d') ?>" class="form-control" style="max-width: 10rem;">
         <button class="btn btn-primary">Buat Penjualan</button>

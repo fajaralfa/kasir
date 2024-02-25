@@ -11,9 +11,6 @@
     <a href="<?= uri('/keranjang/') ?>" class="btn btn-primary <?= bs_active('/keranjang/') ?>">
         Keranjang (<?= count(session_get('keranjang')) ?>)
     </a>
-    <a href="<?= uri('/pelanggan/') ?>" class="btn btn-primary <?= bs_active('/pelanggan/') ?>">
-        Pelanggan
-    </a>
     <?php if ($user['level'] == 'admin') : ?>
         <a href="<?= uri('/petugas/') ?>" class="btn btn-primary <?= bs_active('/petugas/') ?>">
             Petugas

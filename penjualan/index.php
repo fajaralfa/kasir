@@ -2,9 +2,13 @@
 
 require '../start.php';
 
-$sql = "SELECT penjualan.id, penjualan.tanggal_penjualan, pelanggan.nama, pelanggan.nomor_telepon,
-    penjualan.total_harga FROM penjualan LEFT JOIN pelanggan
-    ON penjualan.pelanggan_id = pelanggan.id";
+$sql = "SELECT * FROM penjualan";
+
+// jika difilter
+if (isset($_GET['tgl_awal']) && isset($_GET['tgl_akhir'])) {
+    $sql .= " WHERE tanggal_penjualan BETWEEN '$_GET[tgl_awal]' AND '$_GET[tgl_akhir]'";
+}
+
 $data_penjualan = $db->query($sql)->fetch_all(MYSQLI_ASSOC);
 
 ?>
@@ -17,14 +21,17 @@ require '../layout/header.php';
 <div class="container border py-3">
     <div class="d-flex align-items-center gap-3 mb-3">
         <a href="<?= uri('/produk/') ?>">Buat Penjualan</a>
+        <form action="" method="get" class="d-flex justify-content-center align-items-center gap-3">
+            <input type="date" name="tgl_awal" id="" class="form-control" style="width: 10rem;">
+            <input type="date" name="tgl_akhir" id="" class="form-control" style="width: 10rem;">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
     </div>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>No</th>
                 <th>Tanggal Penjualan</th>
-                <th>Nama Pelanggan</th>
-                <th>Nomor Telepon</th>
                 <th>Total Harga</th>
                 <th>Aksi</th>
             </tr>
@@ -35,8 +42,6 @@ require '../layout/header.php';
                 <tr>
                     <td><?= $no++ ?></td>
                     <td><?= $penjualan['tanggal_penjualan'] ?></td>
-                    <td><?= $penjualan['nama'] ?></td>
-                    <td><?= $penjualan['nomor_telepon'] ?></td>
                     <td><?= rp($penjualan['total_harga']) ?></td>
                     <td class="d-flex gap-3">
                         <a href="detail.php?id=<?= $penjualan['id'] ?>">Detail</a>
@@ -45,6 +50,11 @@ require '../layout/header.php';
             <?php endforeach ?>
         </tbody>
     </table>
+    <?php if (count($data_penjualan) === 0) : ?>
+    <div class="text-center">
+        <h1>Data Kosong</h1>
+    </div>
+    <?php endif ?>
 </div>
 
 <?php require '../layout/footer.php' ?>
