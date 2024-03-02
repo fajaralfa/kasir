@@ -11,7 +11,7 @@
         </div>
         <div>
             <label for="password">Password</label>
-            <input type="text" name="password" value="<?= $form['password'] ?? '' ?>" id="" placeholder="******" class="form-control">
+            <input type="password" name="password" value="<?= $form['password'] ?? '' ?>" id="" placeholder="******" class="form-control">
         </div>
         <div>
             <label for="level">Level</label>
