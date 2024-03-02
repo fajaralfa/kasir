@@ -28,6 +28,18 @@ function redirect($uri)
     die;
 }
 
+/** kembali ke halaman sebelumnya */
+function redirect_back()
+{
+    $last_uri = session_get('last_uri');
+    $current_uri = $_SERVER['REQUEST_URI'];
+    if ($last_uri === $current_uri) {
+        redirect(uri('/login.php'));
+    } else {
+        redirect($last_uri);
+    }
+}
+
 /**
  * membuat / mengedit nilai session
  */

@@ -4,4 +4,7 @@
 </body>
 
 </html>
-<?php session_unflash() ?>
+<?php
+session_unflash();
+session_set('last_uri', $_SERVER['REQUEST_URI']);
+?>

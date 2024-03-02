@@ -2,8 +2,10 @@
 
 require 'start.php';
 
-if (session_get('user', null) == null) {
+session_set('last_uri', $_SERVER['REQUEST_URI']);
+
+if ($user) {
+    redirect('dashboard.php');
+} else {
     redirect('login.php');
 }
-
-redirect('dashboard.php');
