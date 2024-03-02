@@ -1,10 +1,29 @@
 <?php
 
+/**
+ * Function adalah sekumpulan kode program yang melakukan/memproses sesuatu,
+ * dan bisa juga mengeluarkan/mengembalikan hasil dari prosesnya.
+ * Contoh:
+ * function tambah($a, $b) {
+ *      $c = $a + $b;
+ *      return $c;
+ * }
+ * function ini bernama tambah, function ini menerima dua input yaitu a dan b,
+ * function ini menjumlahkan (memproses) bilangan dari a dan b lalu mengeluarkan/mengembalikan hasilnya.
+ * 
+ * Kegunaan function adalah untuk mengurangi duplikasi / copy paste kode program.
+ * dengan function, kita tinggal memanggil nama function dengan inputnya dan kode program
+ * didalam function tersebut akan dipanggil secara otomatis.
+ * 
+ * dibawah ini adalah function yang digunakan di aplikasi ini (bagian atas function menjelaskan kegunaan functionnya)
+ */
+
 /** membuat alamat uri berdasarkan folder proyek */
 function uri($uri)
 {
-    $req_uri = $_SERVER['REQUEST_URI'];
-    $path = parse_url($req_uri)['path'];
+    /** */
+    $req_uri = $_SERVER['REQUEST_URI']; // ambil data uri saat ini
+    $path = parse_url($req_uri)['path']; // pisahkan data uri dari data request
     $root = explode('/', $path)[1];
 
     $result = "/$root$uri";
@@ -31,9 +50,9 @@ function redirect($uri)
 /** kembali ke halaman sebelumnya */
 function redirect_back()
 {
-    $last_uri = session_get('last_uri');
+    $last_uri = session_get('last_uri', '');
     $current_uri = $_SERVER['REQUEST_URI'];
-    if ($last_uri === $current_uri) {
+    if (! $last_uri && $current_uri !== uri('/login.php')) {
         redirect(uri('/login.php'));
     } else {
         redirect($last_uri);
@@ -104,7 +123,7 @@ function option_selected($value1, $value2)
 function bs_active($uri)
 {
     $req_uri = $_SERVER['REQUEST_URI'];
-    return str_starts_with($req_uri, uri($uri)) ? 'active' : '';
+    return strpos($req_uri, uri($uri)) === 0 ? 'active' : '';
 }
 
 /** memformat nilai uang */
