@@ -51,9 +51,9 @@ require '../layout/header.php';
         </tbody>
     </table>
     <?php if (count($data_penjualan) === 0) : ?>
-    <div class="text-center">
-        <h1>Data Kosong</h1>
-    </div>
+        <div class="text-center">
+            <h1>Data Kosong</h1>
+        </div>
     <?php endif ?>
 </div>
 

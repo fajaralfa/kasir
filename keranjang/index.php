@@ -33,10 +33,10 @@ require '../layout/header.php';
             $total = 0;
             ?>
             <?php foreach ($data_keranjang as $key => $val) : ?>
-            <?php
-            $subtotal = $val['harga'] * $val['jumlah'];
-            $total += $subtotal;
-            ?>
+                <?php
+                $subtotal = $val['harga'] * $val['jumlah'];
+                $total += $subtotal;
+                ?>
                 <tr>
                     <td><?= $no++ ?></td>
                     <td><?= $val['nama'] ?></td>
@@ -57,7 +57,14 @@ require '../layout/header.php';
         </tfoot>
     </table>
     <div>
-        <a href="<?= uri('/penjualan/konfirmasi.php') ?>" class="btn btn-primary">Buat Penjualan</a>
+        <?php if (count($data_keranjang) > 0) : ?>
+            <a href="<?= uri('/penjualan/konfirmasi.php') ?>" class="btn btn-primary">Buat Penjualan</a>
+        <?php endif ?>
+        <?php if (count($data_keranjang) === 0) : ?>
+            <div class="text-center">
+                <h1>Data Kosong</h1>
+            </div>
+        <?php endif ?>
     </div>
 </div>
 
