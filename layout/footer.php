@@ -6,5 +6,5 @@
 </html>
 <?php
 session_unflash();
-session_set('last_uri', $_SERVER['REQUEST_URI']);
+session_set('last_url', $_SERVER['REQUEST_URI']);
 ?>

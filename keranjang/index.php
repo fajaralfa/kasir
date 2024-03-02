@@ -14,7 +14,7 @@ require '../layout/header.php';
 
 <div class="container border py-3">
     <div class="d-flex align-items-center gap-3 mb-3">
-        <a href="<?= uri('/produk/index.php') ?>">Pilih Produk</a>
+        <a href="<?= url('/produk/index.php') ?>">Pilih Produk</a>
     </div>
     <table class="table table-striped">
         <thead>
@@ -58,7 +58,7 @@ require '../layout/header.php';
     </table>
     <div>
         <?php if (count($data_keranjang) > 0) : ?>
-            <a href="<?= uri('/penjualan/konfirmasi.php') ?>" class="btn btn-primary">Buat Penjualan</a>
+            <a href="<?= url('/penjualan/konfirmasi.php') ?>" class="btn btn-primary">Buat Penjualan</a>
         <?php endif ?>
         <?php if (count($data_keranjang) === 0) : ?>
             <div class="text-center">

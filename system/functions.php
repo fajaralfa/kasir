@@ -18,15 +18,15 @@
  * dibawah ini adalah function yang digunakan di aplikasi ini (bagian atas function menjelaskan kegunaan functionnya)
  */
 
-/** membuat alamat uri berdasarkan folder proyek */
-function uri($uri)
+/** membuat alamat url berdasarkan folder proyek */
+function url($url)
 {
     /** */
-    $req_uri = $_SERVER['REQUEST_URI']; // ambil data uri saat ini
-    $path = parse_url($req_uri)['path']; // pisahkan data uri dari data request
+    $req_url = $_SERVER['REQUEST_URI']; // ambil data url saat ini
+    $path = parse_url($req_url)['path']; // pisahkan data url dari data request
     $root = explode('/', $path)[1];
 
-    $result = "/$root$uri";
+    $result = "/$root$url";
     return $result;
 }
 
@@ -41,21 +41,21 @@ function request_is($method)
 /**
  * mengalihkan halaman
  */
-function redirect($uri)
+function redirect($url)
 {
-    header("location: $uri");
+    header("location: $url");
     die;
 }
 
 /** kembali ke halaman sebelumnya */
 function redirect_back()
 {
-    $last_uri = session_get('last_uri', '');
-    $current_uri = $_SERVER['REQUEST_URI'];
-    if (! $last_uri && $current_uri !== uri('/login.php')) {
-        redirect(uri('/login.php'));
+    $last_url = session_get('last_url', '');
+    $current_url = $_SERVER['REQUEST_URI'];
+    if (! $last_url && $current_url !== url('/login.php')) {
+        redirect(url('/login.php'));
     } else {
-        redirect($last_uri);
+        redirect($last_url);
     }
 }
 
@@ -120,10 +120,10 @@ function option_selected($value1, $value2)
  * 
  */
 
-function bs_active($uri)
+function bs_active($url)
 {
-    $req_uri = $_SERVER['REQUEST_URI'];
-    return strpos($req_uri, uri($uri)) === 0 ? 'active' : '';
+    $req_url = $_SERVER['REQUEST_URI'];
+    return strpos($req_url, url($url)) === 0 ? 'active' : '';
 }
 
 /** memformat nilai uang */

@@ -2,7 +2,7 @@
 
 require 'start.php';
 
-session_set('last_uri', $_SERVER['REQUEST_URI']);
+session_set('last_url', $_SERVER['REQUEST_URI']);
 
 if ($user) {
     redirect('dashboard.php');

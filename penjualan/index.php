@@ -20,7 +20,7 @@ require '../layout/header.php';
 
 <div class="container border py-3">
     <div class="d-flex align-items-center gap-3 mb-3">
-        <a href="<?= uri('/produk/') ?>">Buat Penjualan</a>
+        <a href="<?= url('/produk/') ?>">Buat Penjualan</a>
         <form action="" method="get" class="d-flex justify-content-center align-items-center gap-3">
             <input type="date" name="tgl_awal" id="" class="form-control" style="width: 10rem;">
             <input type="date" name="tgl_akhir" id="" class="form-control" style="width: 10rem;">

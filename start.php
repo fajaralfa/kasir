@@ -17,10 +17,10 @@ $messages = session_get('messages'); // ambil data pesan
 $errors = session_get('errors'); // ambil data pesan error
 
 /** Cek perizinan halaman */
-$uri_saat_ini = parse_url($_SERVER['REQUEST_URI'])['path']; // data uri saat ini
+$url_saat_ini = parse_url($_SERVER['REQUEST_URI'])['path']; // data url saat ini
 
-if ($uri_saat_ini === uri('/')) { // jika uri yang akses adalah /kasir/
-    redirect(uri('/index.php')); // maka alihkan ke /index.php
+if ($url_saat_ini === url('/')) { // jika url yang akses adalah /kasir/
+    redirect(url('/index.php')); // maka alihkan ke /index.php
 }
 
 // halaman - halaman yang dapat diakses oleh user berdasarkan level
@@ -37,15 +37,15 @@ $level_perizinan = [
 ];
 
 $diizinkan = false; // atur perizinan menjadi false (tidak diizinkan) terlebih dahulu
-$halaman_yang_diizinkan = $level_perizinan[$user['level'] ?? 'nobody']; // pilih daftar uri berdasarkan level user
-foreach ($halaman_yang_diizinkan as $uri) { // baca uri yang bisa diakses satu per satu
+$halaman_yang_diizinkan = $level_perizinan[$user['level'] ?? 'nobody']; // pilih daftar url berdasarkan level user
+foreach ($halaman_yang_diizinkan as $url) { // baca url yang bisa diakses satu per satu
 
-    if (strpos($uri_saat_ini, uri($uri)) === 0) { // jika uri saat ini mirip dengan salah satu yang ada di daftar halaman,
+    if (strpos($url_saat_ini, url($url)) === 0) { // jika url saat ini mirip dengan salah satu yang ada di daftar halaman,
         $diizinkan = true; // maka ubah perizinan menjadi true (diizinkan)
         break; // lalu hentikan perulangan karena telah diizinkan
     }
 
-    // jika uri yang diakses saat ini tidak ada yang mirip dengan yang ada di daftar halaman, maka perizinannya berarti masih false (tidak diizinkan)
+    // jika url yang diakses saat ini tidak ada yang mirip dengan yang ada di daftar halaman, maka perizinannya berarti masih false (tidak diizinkan)
 }
 
 if (! $diizinkan) { // jika perizinannya false (tidak diizinkan)
