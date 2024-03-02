@@ -15,7 +15,9 @@ require '../layout/header.php';
 
 <div class="container border py-3">
     <div class="d-flex align-items-center gap-3 mb-3">
-        <a href="tambah.php">Tambah Produk</a>
+        <?php if ($user['level'] === 'admin') : ?>
+            <a href="tambah.php">Tambah Produk</a>
+        <?php endif ?>
         <form action="" method="get" class="d-flex gap-3">
             <input type="text" name="nama" id="" class="form-control">
             <button type="submit" class="btn btn-success">Cari</button>
@@ -40,20 +42,28 @@ require '../layout/header.php';
                     <td><?= rp($produk['harga']) ?></td>
                     <td><?= $produk['stok'] ?></td>
                     <td class="d-flex gap-3">
-                        <form action="ke_keranjang.php" method="post" class="d-flex gap-3">
-                            <input type="hidden" name="produk_id" value="<?= $produk['id'] ?>">
-                            <input type="hidden" name="nama" value="<?= $produk['nama'] ?>">
-                            <input type="hidden" name="harga" id="" value="<?= $produk['harga'] ?>">
-                            <input type="number" name="jumlah" value="1" class="form-control" style="max-width: 5rem;">
-                            <button type="submit" class="btn btn-primary">Tambah ke Keranjang</button>
-                        </form>
-                        <a href="edit.php?id=<?= $produk['id'] ?>" class="btn btn-secondary">Edit</a>
-                        <a href="hapus.php?id=<?= $produk['id'] ?>" class="btn btn-danger" onclick="return confirm('Hapus produk ini?')">Hapus</a>
+                        <?php if ($user['level'] === 'petugas') : ?>
+                            <form action="ke_keranjang.php" method="post" class="d-flex gap-3">
+                                <input type="hidden" name="produk_id" value="<?= $produk['id'] ?>">
+                                <input type="hidden" name="nama" value="<?= $produk['nama'] ?>">
+                                <input type="hidden" name="harga" id="" value="<?= $produk['harga'] ?>">
+                                <input type="number" name="jumlah" value="1" class="form-control" style="max-width: 5rem;">
+                                <button type="submit" class="btn btn-primary">Tambah ke Keranjang</button>
+                            </form>
+                        <?php elseif ($user['level'] === 'admin') : ?>
+                            <a href="edit.php?id=<?= $produk['id'] ?>" class="btn btn-secondary">Edit</a>
+                            <a href="hapus.php?id=<?= $produk['id'] ?>" class="btn btn-danger" onclick="return confirm('Hapus produk ini?')">Hapus</a>
+                        <?php endif ?>
                     </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
     </table>
+    <?php if (count($data_produk) === 0) : ?>
+        <div class="text-center">
+            <h1>Data Kosong</h1>
+        </div>
+    <?php endif ?>
 </div>
 
 <?php require '../layout/footer.php' ?>
