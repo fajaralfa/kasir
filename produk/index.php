@@ -60,6 +60,11 @@ require '../layout/header.php';
                         <?php elseif ($user['level'] === 'admin') : ?>
                             <a href="edit.php?id=<?= $produk['id'] ?>" class="btn btn-secondary">Edit</a>
                             <a href="hapus.php?id=<?= $produk['id'] ?>" class="btn btn-danger" onclick="return confirm('Hapus produk ini?')">Hapus</a>
+                            <form action="tambah_stok.php" method="post" class="ms-3 d-flex gap-3">
+                                <input type="hidden" name="id" value="<?= $produk['id'] ?>">
+                                <input type="number" name="stok_baru" value="0" class="form-control" style="max-width: 5rem;">
+                                <button type="submit" class="btn btn-primary">Tambah Stok</button>
+                            </form>
                         <?php endif ?>
                     </td>
                 </tr>
