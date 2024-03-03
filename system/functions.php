@@ -83,7 +83,7 @@ function session_get($key, $default = [])
 }
 
 /**
- * menghapus nilai session (mengosongkan)
+ * menghapus/mengosongkan nilai session
  */
 function session_remove($key)
 {
@@ -155,9 +155,10 @@ function bs_active($url)
 
 /**
  * memformat angka dengan format rupiah
+ * contoh rp(10000)
 */
 function rp($nilai_uang)
 {
     $angka = number_format($nilai_uang, 0, null, '.');
-    return "Rp. $angka,-"; // contoh Rp. 10.000,-
+    return "Rp. $angka,-";
 }
