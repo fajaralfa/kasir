@@ -23,7 +23,7 @@ require '../layout/header.php';
 ?>
 
 <div class="container border py-3"> 
-    <button class="btn btn-primary mb-3" onclick="window.print()">Cetak</button>
+    <button class="btn btn-primary mb-3" onclick="window.open('cetak_detail.php?id=<?= $penjualan['id'] ?>')">Cetak</button>
     <div>Tanggal Penjualan : <?= $penjualan['tanggal_penjualan'] ?></div>
     <table class="table table-striped">
         <thead>
@@ -35,9 +35,7 @@ require '../layout/header.php';
             </tr>
         </thead>
         <tbody>
-            <?php $total = 0 ?>
             <?php foreach ($detail_penjualan as $produk) : ?>
-            <?php $total += $produk['subtotal'] ?>
                 <tr>
                     <td><?= $produk['nama'] ?></td>
                     <td><?= rp($produk['harga']) ?></td>
@@ -49,7 +47,15 @@ require '../layout/header.php';
         <tfoot>
             <tr>
                 <th colspan="3">Total Harga</th>
-                <th><?= rp($total) ?></th>
+                <th><?= rp($penjualan['total_harga']) ?></th>
+            </tr>
+            <tr>
+                <th colspan="3">Uang Masuk</th>
+                <th><?= rp($penjualan['uang_masuk']) ?></th>
+            </tr>
+            <tr>
+                <th colspan="3">Kembalian</th>
+                <th><?= rp($penjualan['uang_masuk'] - $penjualan['total_harga']) ?></th>
             </tr>
         </tfoot>
     </table>

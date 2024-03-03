@@ -28,10 +28,10 @@ require '../layout/header.php';
             $no = 1;
             $total = 0;
             foreach ($data_keranjang as $key => $val) : ?>
-            <?php
-            $subtotal = $val['harga'] * $val['jumlah'];
-            $total += $subtotal;
-            ?>
+                <?php
+                $subtotal = $val['harga'] * $val['jumlah'];
+                $total += $subtotal;
+                ?>
                 <tr>
                     <td><?= $no++ ?></td>
                     <td><?= $val['nama'] ?></td>
@@ -48,11 +48,40 @@ require '../layout/header.php';
             </tr>
         </tfoot>
     </table>
-    <form action="proses.php" method="post" class="d-flex gap-3">
+    <form action="proses.php" method="post" id="form-konfirmasi-penjualan" class="d-flex flex-column gap-2" style="max-width: 10rem;">
         <input type="hidden" name="total" value="<?= $total ?>" id="">
-        <input type="date" name="tanggal_penjualan" id="" value="<?= date('Y-m-d') ?>" class="form-control" style="max-width: 10rem;">
-        <button class="btn btn-primary">Buat Penjualan</button>
+        <input type="date" name="tanggal_penjualan" id="" value="<?= date('Y-m-d') ?>" class="form-control">
+        <input type="number" name="uang_masuk" id="" placeholder="Jumlah Uang" class="form-control">
+        <div id="teks-kembalian"></div>
+        <div>
+            <button class="btn btn-primary">Buat Penjualan</button>
+        </div>
     </form>
 </div>
+
+<script>
+    const formKonfirmasiPenjualan = document.querySelector('#form-konfirmasi-penjualan')
+    const teksKembalian = document.querySelector('#teks-kembalian')
+    const inputUangMasuk = document.querySelector('input[name=uang_masuk]')
+    const totalHarga = <?= $total ?>
+
+    inputUangMasuk.addEventListener('input', function(e) {
+        let uangMasuk = e.currentTarget.value
+        if (uangMasuk < totalHarga) {
+            teksKembalian.classList = 'alert alert-warning py-1'
+            teksKembalian.innerText = `Uang Kurang!`
+        } else {
+            teksKembalian.classList = 'alert alert-success py-1'
+            teksKembalian.innerText = `Kembalian: ${uangMasuk - totalHarga}`
+        }
+    })
+
+    formKonfirmasiPenjualan.addEventListener('submit', function(e) {
+        if (inputUangMasuk.value < totalHarga) {
+            e.preventDefault()
+            alert('Uang Kurang!')
+        }
+    })
+</script>
 
 <?php require '../layout/footer.php' ?>

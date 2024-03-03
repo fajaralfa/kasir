@@ -16,7 +16,8 @@ CREATE TABLE produk (
 CREATE TABLE penjualan (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     tanggal_penjualan DATE NOT NULL,
-    total_harga INTEGER NOT NULL
+    total_harga INTEGER NOT NULL,
+    uang_masuk INTEGER NOT NULL
 );
 
 CREATE TABLE detail_penjualan (

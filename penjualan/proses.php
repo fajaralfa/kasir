@@ -6,11 +6,12 @@ require '../system/keranjang.php';
 // Buat data penjualan
 $tanggal_penjualan = $_POST['tanggal_penjualan'];
 $total_harga = $_POST['total'];
+$uang_masuk = $_POST['uang_masuk'];
 
 $db->begin_transaction();
 
-$sql = "INSERT INTO penjualan (tanggal_penjualan, total_harga)
-    VALUE ('$tanggal_penjualan', $total_harga)";
+$sql = "INSERT INTO penjualan (tanggal_penjualan, total_harga, uang_masuk)
+    VALUE ('$tanggal_penjualan', $total_harga, $uang_masuk)";
 $db->query($sql);
 
 $penjualan_id = $db->insert_id;
