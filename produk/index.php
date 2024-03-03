@@ -3,7 +3,11 @@
 require '../start.php';
 
 $sql = "SELECT * FROM produk";
-if (isset($_GET['nama'])) $sql .= " WHERE nama LIKE '%$_GET[nama]%'";
+if (isset($_GET['nama']))
+    $sql .= " WHERE nama LIKE '%$_GET[nama]%'";
+if (isset($_GET['order_by']) && isset($_GET['order']))
+    $sql .= " ORDER BY $_GET[order_by] $_GET[order]";
+
 $data_produk = $db->query($sql)->fetch_all(MYSQLI_ASSOC);
 
 ?>
@@ -16,12 +20,14 @@ require '../layout/header.php';
 <div class="container border py-3">
     <div class="d-flex align-items-center gap-3 mb-3">
         <?php if ($user['level'] === 'admin') : ?>
-            <a href="tambah.php">Tambah Produk</a>
+            <a href="tambah.php" class="btn btn-primary">Tambah Produk</a>
         <?php endif ?>
         <form action="" method="get" class="d-flex gap-3">
-            <input type="text" name="nama" id="" class="form-control">
+            <input type="text" name="nama" id="" placeholder="Nama Produk" class="form-control">
             <button type="submit" class="btn btn-success">Cari</button>
         </form>
+        <a href="?order_by=stok&order=ASC" class="ms-auto btn btn-warning">Urutkan Dari Stok Terkecil</a>
+        <a href="?order_by=stok&order=DESC" class="btn btn-warning">Urutkan Dari Stok Terbesar</a>
     </div>
     <table class="table table-striped">
         <thead>
@@ -47,6 +53,7 @@ require '../layout/header.php';
                                 <input type="hidden" name="produk_id" value="<?= $produk['id'] ?>">
                                 <input type="hidden" name="nama" value="<?= $produk['nama'] ?>">
                                 <input type="hidden" name="harga" id="" value="<?= $produk['harga'] ?>">
+                                <input type="hidden" name="stok" value="<?= $produk['stok'] ?>">
                                 <input type="number" name="jumlah" value="1" class="form-control" style="max-width: 5rem;">
                                 <button type="submit" class="btn btn-primary">Tambah ke Keranjang</button>
                             </form>
