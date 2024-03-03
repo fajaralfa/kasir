@@ -14,7 +14,7 @@ require '../layout/header.php';
 
 <div class="container border py-3">
     <div class="d-flex align-items-center gap-3 mb-3">
-        <a href="<?= url('/produk/index.php') ?>">Pilih Produk</a>
+        <a href="<?= url('/produk/index.php') ?>" class="btn btn-primary">Pilih Produk</a>
     </div>
     <table class="table table-striped">
         <thead>
