@@ -1,10 +1,24 @@
 <?php
 
 require 'start.php';
+
+// dibawah ini adalah kode untuk mengambil data dari database
+// polanya adalah
+// 1. buat teks query yang akan dijalankan dan simpan di variabel ($sql = 'SELECT COUNT()...')
+// 2. jalankan perintah query diatas ($db->query($sql))
+// 3. ambil data yang didapat (->fetch_assoc())
+// 4. simpan di variabel ($penjualan, $produk, $pendapatan_tahun_ini)
+// catatan, khusus untuk $pendapatan tahun ini, saya langsung mengambil data dari nama kolomnya
+// (->fetch_assoc(['pendapatan_tahun_ini'])) karena kolom yang diambil hanya satu, jadi saya buat untuk mempersingkat kodingan
+
+// perintah sql
 $sql = "SELECT COUNT(*) as bulan_ini, SUM(total_harga) AS pendapatan_bulan_ini FROM penjualan WHERE
     MONTH(tanggal_penjualan) = MONTH(NOW()) AND YEAR(tanggal_penjualan) = YEAR(NOW())";
+
+// kode untuk menjalankan perintah sql dan mengambil datanya
 $penjualan = $db->query($sql)->fetch_assoc();
 
+// polanya sama seperti diatas
 $sql = "SELECT SUM(stok) AS stok, COUNT(*) AS jenis FROM produk";
 $produk = $db->query($sql)->fetch_assoc();
 
@@ -19,7 +33,7 @@ $title = 'Dashboard';
 require 'layout/header.php';
 ?>
 
-<div class="container py-5" style="width: 70rem;">
+<div class="container py-5" style="max-width: 70rem;">
     <div class="row mb-4">
         <div class="col">
             <div class="card">
