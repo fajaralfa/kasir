@@ -14,7 +14,7 @@ if (request_is('POST')) {
         keranjang_insert($produk_id, $nama, $harga, $jumlah);
         flash_messages(['Produk berhasil ditambahkan ke keranjang!']);
     } else {
-        flash_errors(['Stok kurang!']);
+        flash_errors(['Jumlah yang dibeli melebihi stok!']);
     }
 
     redirect('index.php');
